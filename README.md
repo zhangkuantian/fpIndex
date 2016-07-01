@@ -39,6 +39,7 @@ object ArrayUtils{
   }
   
   private def fib(n:Int):Int = {
+  
     if(0 == n )
       0 
     else if(1 == n)
