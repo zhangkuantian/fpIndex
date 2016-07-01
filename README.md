@@ -13,3 +13,37 @@
 #函数也是值
 <p>在scala中，函数也是值，就像其他类型的值，比如整型、字符串、列表；函数也可以赋值给一个变量、存储在一个数据结构里、像参数一样传递给另一个函数；
 <p>把一个函数当作参数传递给另一个函数在纯函数式编程里很有作用，它被称为高阶函数
+
+#例子：
+<p>写一个递归函数，来获取第n个斐波那契数，前两个斐波那契数为0和1，第n个数总是等于它的前两个数之和——序列开始为0、1、1、2、3、5
+package com.tianfei.collect
+
+object ArrayUtils{
+  
+  def main(args:Array[String]):Unit = {
+    
+    val getMsg = (msg:String, time:Int) =>{
+      for( i <- 0 until time){
+        println("Receive Message: " + msg + " times: " + (i+1))
+      }
+    }
+    
+    getMsg("ERROR MSG ! ", 10)
+    
+    for(i <- 0 until 10){
+      print(fib(i) + " ")
+    }
+    
+    
+  }
+  
+  private def fib(n:Int):Int = {
+    if(0 == n )
+      0 
+    else if(1 == n)
+      1
+    else
+      fib(n-1) + fib(n-2)
+  }
+  
+}
