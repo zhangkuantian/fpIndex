@@ -49,3 +49,32 @@ object ArrayUtils{
   }
   
 }
+
+#Scala多态函数
+<p>通常，特别是在写高阶函数的时候，希望写出的这段代码能够适用于任何类型，他们被称为“多态函数”。
+<p>例如在数组中查找元素的多态函数如下：
+
+def p\[A,B\](str:A):Boolean = {
+    str.equals(80)
+  }
+  
+  
+  def findFirst\[A,B\](ss:Array\[A\], p:A=>Boolean):Int ={
+    
+    def loop(n:Int):Int = {
+      if(n>= ss.length) -1
+      else if(p(ss(n))) n
+      else loop(n + 1)
+    }
+    
+    loop(0)
+  }
+
+
+
+
+
+
+
+
+
