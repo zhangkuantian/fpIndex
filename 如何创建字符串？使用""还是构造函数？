@@ -1,0 +1,46 @@
+在Java中，有两种方式可以创建字符串：
+
+String x = "abc";
+String y = new String("abc");
+使用双引号和构造函数之间到底有什么区别呢？
+
+双引号 vs 构造函数
+
+这个问题可以使用这两个简单代码实例来回答：
+
+实例一
+
+String a = "abcd";
+String b = "abcd";
+System.out.println("a == b : "+(a == b)); // true
+System.out.println("a.equals(b) : "+(a.equals(b))); // true
+a== b等于true 是因为x和y指向方法区中同一个字符串常量，他们的引用是相同的（==比较的是引用）。
+
+当相同的字符串常量被多次创建时，只会保存字符串常量的一份副本，这称为“字符串驻留”。在Java中，所有编译时字符串常量都是驻留的。
+
+实例二
+
+String c = new String("abcd");
+String d = new String("abcd");
+System.out.println("c == d : "+(c == d)); // false
+System.out.println("c.equals(d) : "+(c.equals(d))); // true
+c== d等于false 是因为c和d指向堆中不同的对象。不同的对象拥有不同的内存引用。
+
+下面图论证了以上的结论。
+
+对于""来说，a、b指向相同的对象；而对于c、d来说，指向的是不同的对象
+
+
+string
+
+运行时字符串驻留
+
+运行时也会发生字符串驻留，即使两个字符串是由构造函数方法创建的。
+
+String c = new String("abcd").intern();
+String d = new String("abcd").intern();
+System.out.println("c == d : "+(c == d)); // true
+System.out.println("c.equals(d) : "+(c.equals(d))); // true    （JDK1.7）
+因为字面值“abcd”已经是字符串类型，那么使用构造函数方式只会创建一个额外没有用处的对象。
+
+因此，如果你只需要创建一个字符串，你可以使用双引号的方式，如果你需要在堆中创建一个新的对象，你可以选择构造函数的方式。
