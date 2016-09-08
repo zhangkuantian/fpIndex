@@ -1,0 +1,21 @@
+将Kafka的Core工程导入Eclipse后发现报错
+
+scalatest_2.10-2.2.6.jar of core build path is cross-compiled with an incompatible version of Scala (2.10.0). In case this report is mistaken, this check can be disabled in the compiler preference page
+
+问题分析：
+Scala compiler的版本问题导致的。
+
+解决方案：
+
+选择core工程，右键->Properties -> Scala compiler进入Scala编译器设置界面，将Scala版本设置为2.10，于gradle.properties中的保持一致
+顺便将target jvm的版本也调成1.8 保存之后重新build，Eclipse不再报错
+
+
+在用gradle编译kafka的时候，发现很慢。
+使用 gradle build
+原因：
+默认kafka编译是全量编译的，在编译test的时候，跑得很慢。有些case执行失败的时候，会默认等待超时后再结束，有些超时时间有点长
+
+解决方案：
+
+调用gradle build -x test, 跳过单元测试的编译，之后编译就很快了
